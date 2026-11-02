@@ -1,0 +1,10 @@
+API/
+*.pages
+.env
+*.token
+data/cache/
+out/
+__pycache__/
+.DS_Store
+assets/cache/
+samples/

@@ -263,7 +263,7 @@ G_TO_KP = {1: 5, 2: 6, 3: 7, 4: 8, 5: 9}
 def reel_aurora(out_dir, posted=None, now=None, min_g=2):
     posted = posted or {}
     now = now or datetime.now(timezone.utc)
-    tonight = (now.astimezone(PT) + timedelta(hours=6)).date()        # "tonight" in US evening terms
+    tonight = (now.astimezone(PT) - timedelta(hours=6)).date()        # after midnight it is still last night
     utc_days = {(f"{d:%b}", d.day) for d in (tonight, tonight + timedelta(days=1))}   # US night spans 2 UTC dates
     watches = [w for w in S.swpc_messages("WATA") if now - w["issued"] < timedelta(hours=48)]
     best = None

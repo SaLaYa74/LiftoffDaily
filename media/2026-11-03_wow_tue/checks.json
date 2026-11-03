@@ -1,0 +1,105 @@
+{
+  "subject": "wow-cosmic-cliffs",
+  "counts": {
+    "pass": 19,
+    "warn": 0,
+    "block": 0
+  },
+  "checks": [
+    {
+      "status": "pass",
+      "check": "wow: 2-3 fact beats",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "wow: facts cite the release",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "image: rights-clean credit",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "wow-cosmic-cliffs.mp4: rendered",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "wow-cosmic-cliffs.mp4: file size",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "wow-cosmic-cliffs.mp4: duration",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "wow-cosmic-cliffs.mp4: 1080x1920",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "wow-cosmic-cliffs.mp4: has audio",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "wow-cosmic-cliffs.mp4: H.264 video",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "wow-cosmic-cliffs_cover.jpg: rendered",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "wow-cosmic-cliffs_cover.jpg: dimensions",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "wow-cosmic-cliffs_cover.jpg: not empty",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "wow-cosmic-cliffs_cover.jpg: has visible content",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: length",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: 5 hashtags max",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: cites its source",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: credits the visual",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: brand language",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: no missing values",
+      "detail": ""
+    }
+  ]
+}

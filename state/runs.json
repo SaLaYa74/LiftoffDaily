@@ -23,5 +23,10 @@
     "at": "2026-11-03T08:00-08:00",
     "detail": "no G2+ storm watch for tonight (2026-11-03)",
     "status": "skipped"
+  },
+  "2026-11-03:lookup": {
+    "at": "2026-11-03T11:00-08:00",
+    "detail": "https://www.instagram.com/reel/DfSlpYFEVb1/",
+    "status": "posted"
   }
 }

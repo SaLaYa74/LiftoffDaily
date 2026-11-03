@@ -1,1 +1,22 @@
-{}
+{
+  "2026-11-02:aurora_am": {
+    "at": "2026-11-02T19:59-08:00",
+    "detail": "no G2+ storm watch for tonight (2026-11-03)",
+    "status": "skipped"
+  },
+  "2026-11-02:aurora_eve": {
+    "at": "2026-11-02T19:59-08:00",
+    "detail": "no G2+ storm watch for tonight (2026-11-03)",
+    "status": "skipped"
+  },
+  "2026-11-02:aurora_pm": {
+    "at": "2026-11-02T19:59-08:00",
+    "detail": "no G2+ storm watch for tonight (2026-11-03)",
+    "status": "skipped"
+  },
+  "2026-11-02:lookup": {
+    "at": "2026-11-02T19:59-08:00",
+    "detail": "built, checked and hosting verified, not published",
+    "status": "previewed"
+  }
+}

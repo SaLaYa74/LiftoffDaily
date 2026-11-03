@@ -16,3 +16,10 @@
   Caught during review: N159's "230 light-years" is the width of the *image*, not the cloud. Fixed the wording.
 - Profile picture: brand/profile_pic.png (gold rocket on a night sky; readable at 76px).
 - Calendar now has ~3-4 Reels/week plus event days. Still need Scale and Just In formats to reach 2 a day.
+
+## 2026-11-02 (evening): live
+- Owner approved the previews and went live. All 7 jobs are live=True; posting also needs the repo variable POSTING_ENABLED=true.
+- First posts: Tue Nov 3 11:00 Geminids "6 weeks away", Tue 12:00 Wow Cosmic Cliffs, Sat Wow N159,
+  Mon Nov 9 Launch Week + Leonids "1 week". Aurora whenever NOAA issues a G2+ watch.
+- Baseline to beat: the other pages' ~100-140 reach per Reel and 0 shares. Watch: reach, shares per reach, watch time vs length.
+- About 3 posts a week for now; the Scale and Just In formats are next, to reach 2 a day.

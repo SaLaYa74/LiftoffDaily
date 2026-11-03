@@ -30,5 +30,5 @@ JOBS = [
     # Weekly
     Job("wow_tue",     "reel_wow",         (TUE,), "12:00", live=True, note="Reel: telescope image + 3 facts (hand-checked queue in liftoff/wow.py)"),
     Job("wow_sat",     "reel_wow",         (SAT,), "10:00", live=True, note="Reel: telescope image + 3 facts (hand-checked queue in liftoff/wow.py)"),
-    Job("launch_week", "reel_launch_week", (MON,), "07:00", note="Reel: rockets launching this week (LL2 + RocketLaunch.live)"),
+    Job("launch_week", "reel_launch_week", (MON,), "07:00", live=True, note="Reel: rockets launching this week (LL2 + RocketLaunch.live)"),
 ]

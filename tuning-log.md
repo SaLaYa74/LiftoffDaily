@@ -23,3 +23,17 @@
   Mon Nov 9 Launch Week + Leonids "1 week". Aurora whenever NOAA issues a G2+ watch.
 - Baseline to beat: the other pages' ~100-140 reach per Reel and 0 shares. Watch: reach, shares per reach, watch time vs length.
 - About 3 posts a week for now; the Scale and Just In formats are next, to reach 2 a day.
+
+## 2026-11-05 (Thu, check-in)
+
+**Numbers (first 4 days):** 2 followers. 2 Reels. Look Up "Geminids 6 weeks away": 108 reach, 142 views, **2 shares**
+(~1.9% shares per reach, the first shares on any of the three pages), 5.6 s avg watch on a 12.6 s Reel.
+Wow "Cosmic Cliffs": 46 reach, 1.4 s avg watch on 11.2 s: most viewers left in the first second or two.
+No errors in the run log; aurora jobs correctly skipped (no G2+ watch).
+
+**Changed:** nothing. One post per format is far too little to judge.
+
+**Watch Monday Nov 9 (review + queue upkeep):** the Wow queue has only 1 unposted entry (N159, Sat Nov 7), so Tue
+Nov 10 has nothing unless Monday adds at least 4 (rule: keep 4+). sky.py only goes to the Geminids (Dec 13): stock it
+through early January (Ursids, Quadrantids, Moon events, two sources each). Compare Sat's Wow (N159) first-second hold
+against Cosmic Cliffs; if Wow stays under ~2 s watch, rework its first frame toward the Look Up style.

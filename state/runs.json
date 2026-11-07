@@ -108,5 +108,10 @@
     "at": "2026-11-07T08:00-08:00",
     "detail": "no G2+ storm watch for tonight (2026-11-07)",
     "status": "skipped"
+  },
+  "2026-11-07:wow_sat": {
+    "at": "2026-11-07T10:00-08:00",
+    "detail": "https://www.instagram.com/reel/Dfcx1MPCGEQ/",
+    "status": "posted"
   }
 }

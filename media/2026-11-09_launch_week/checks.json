@@ -1,0 +1,120 @@
+{
+  "subject": "launchweek-2026-w46",
+  "counts": {
+    "pass": 20,
+    "warn": 2,
+    "block": 0
+  },
+  "checks": [
+    {
+      "status": "pass",
+      "check": "launches: no duplicates",
+      "detail": ""
+    },
+    {
+      "status": "warn",
+      "check": "launch: Mir Wed 00:00 ET left out",
+      "detail": "not confirmed by the second source"
+    },
+    {
+      "status": "warn",
+      "check": "launch: Vulcan VC6L Fri 12:54 ET left out",
+      "detail": "not confirmed by the second source"
+    },
+    {
+      "status": "pass",
+      "check": "launches: second source overlaps this week",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "image: rights-clean credit",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launches: all in the future",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchweek-2026-w46.mp4: rendered",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchweek-2026-w46.mp4: file size",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchweek-2026-w46.mp4: duration",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchweek-2026-w46.mp4: 1080x1920",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchweek-2026-w46.mp4: has audio",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchweek-2026-w46.mp4: H.264 video",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchweek-2026-w46_cover.jpg: rendered",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchweek-2026-w46_cover.jpg: dimensions",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchweek-2026-w46_cover.jpg: not empty",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchweek-2026-w46_cover.jpg: has visible content",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: length",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: 5 hashtags max",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: cites its source",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: credits the visual",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: brand language",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: no missing values",
+      "detail": ""
+    }
+  ]
+}

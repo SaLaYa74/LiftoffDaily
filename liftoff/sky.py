@@ -41,6 +41,17 @@ EVENTS = [
              photo="NHQ202108100009", photo_note="a 2021 Perseid meteor and the Milky Way over West Virginia",
              photo_focus=((0.5, 0.5), (0.48, 0.42)), photo_zoom=(1.0, 1.12),
              sources=("IMO 2026 Meteor Shower Calendar: ZHR 150", "American Meteor Society: peak night Dec 13-14, ZHR 150")),
+    # Added 2026-11-09. rate=25 is AMS's "average hourly rate under dark skies" (IMO's ideal-sky ZHR is 80), so the
+    # Reel says "around 25 an hour", the number both sources support for a real sky. Ursids 2026 skipped on purpose:
+    # ZHR ~10, a ~90% Moon, and IMO (max Dec 22 22h UT) vs AMS (peak night Dec 21-22) don't point to the same US night.
+    SkyEvent("quadrantids-2027", "Quadrantids", "meteors", date(2027, 1, 3),
+             "the Quadrantid meteor shower", rate=25,
+             best="the hours before dawn", where="the northern sky; best from the Northern Hemisphere",
+             fact="The peak lasts only a few hours",
+             photo="NHQ202108100009", photo_note="a 2021 Perseid meteor and the Milky Way over West Virginia",
+             photo_focus=((0.5, 0.5), (0.48, 0.42)), photo_zoom=(1.0, 1.12),
+             sources=("IMO 2027 Meteor Shower Calendar: maximum Jan 4 03:25 UT (evening of Jan 3 in the US), ZHR 80",
+                      "American Meteor Society: peak night Jan 3-4, peak near 3:30 UT Jan 4, ~25 an hour under dark skies")),
 ]
 
 

@@ -60,9 +60,11 @@ def _prepare(photo, max_zoom, grade=None):
 
 def _box(im, cw, ch, zoom, cx, cy):
     """9:16 crop box at `zoom` centered near (cx, cy) in 0-1 image coords, clamped inside the photo."""
-    w, h = cw / zoom, ch / zoom
-    x = min(max(cx * im.width - w / 2, 0), im.width - w)
-    y = min(max(cy * im.height - h / 2, 0), im.height - h)
+    # Clamp to the photo: after _prepare's rounded resize the window can be a fraction of a pixel bigger than the
+    # photo (very wide panoramas), which made the offset negative and crashed the build (fixed 2026-11-09).
+    w, h = min(cw / zoom, im.width), min(ch / zoom, im.height)
+    x = max(0, min(max(cx * im.width - w / 2, 0), im.width - w))
+    y = max(0, min(max(cy * im.height - h / 2, 0), im.height - h))
     return (x, y, x + w, y + h)
 
 

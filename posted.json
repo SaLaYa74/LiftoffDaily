@@ -48,5 +48,15 @@
     "posted_at": "2026-11-07T18:02:39+00:00",
     "scheduled": "10:00",
     "trial": false
+  },
+  "wow-treasure-chest": {
+    "images": 1,
+    "job": "wow_tue",
+    "media": "reel",
+    "media_id": "18133248568828075",
+    "permalink": "https://www.instagram.com/reel/Dfkt8MLCmxR/",
+    "posted_at": "2026-11-10T20:02:29+00:00",
+    "scheduled": "12:00",
+    "trial": false
   }
 }

@@ -238,5 +238,10 @@
     "at": "2026-11-12T11:00-08:00",
     "detail": "no sky-event countdown due today",
     "status": "skipped"
+  },
+  "2026-11-13:aurora_am": {
+    "at": "2026-11-13T08:00-08:00",
+    "detail": "no G2+ storm watch for tonight (2026-11-13)",
+    "status": "skipped"
   }
 }

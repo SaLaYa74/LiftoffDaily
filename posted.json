@@ -59,6 +59,16 @@
     "scheduled": "10:00",
     "trial": false
   },
+  "wow-omc2-star-birth": {
+    "images": 1,
+    "job": "wow_sat",
+    "media": "reel",
+    "media_id": "18213329323362533",
+    "permalink": "https://www.instagram.com/reel/Dfu4fzgkgf4/",
+    "posted_at": "2026-11-14T18:47:06+00:00",
+    "scheduled": "10:00",
+    "trial": false
+  },
   "wow-treasure-chest": {
     "images": 1,
     "job": "wow_tue",

@@ -265,8 +265,8 @@
     "status": "skipped"
   },
   "2026-11-14:wow_sat": {
-    "at": "2026-11-14T10:30-08:00",
-    "detail": "https://www.instagram.com/reel/Dfu236-AudH/",
-    "status": "posted"
+    "at": "2026-11-14T10:33-08:00",
+    "detail": "InstagramError: Media container 18185541799439048 status ERROR",
+    "status": "error"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "subject": "wow-house-of-mirrors",
+  "subject": "wow-omc2-star-birth",
   "counts": {
     "pass": 19,
     "warn": 0,
@@ -23,52 +23,52 @@
     },
     {
       "status": "pass",
-      "check": "wow-house-of-mirrors.mp4: rendered",
+      "check": "wow-omc2-star-birth.mp4: rendered",
       "detail": ""
     },
     {
       "status": "pass",
-      "check": "wow-house-of-mirrors.mp4: file size",
+      "check": "wow-omc2-star-birth.mp4: file size",
       "detail": ""
     },
     {
       "status": "pass",
-      "check": "wow-house-of-mirrors.mp4: duration",
+      "check": "wow-omc2-star-birth.mp4: duration",
       "detail": ""
     },
     {
       "status": "pass",
-      "check": "wow-house-of-mirrors.mp4: 1080x1920",
+      "check": "wow-omc2-star-birth.mp4: 1080x1920",
       "detail": ""
     },
     {
       "status": "pass",
-      "check": "wow-house-of-mirrors.mp4: has audio",
+      "check": "wow-omc2-star-birth.mp4: has audio",
       "detail": ""
     },
     {
       "status": "pass",
-      "check": "wow-house-of-mirrors.mp4: H.264 video",
+      "check": "wow-omc2-star-birth.mp4: H.264 video",
       "detail": ""
     },
     {
       "status": "pass",
-      "check": "wow-house-of-mirrors_cover.jpg: rendered",
+      "check": "wow-omc2-star-birth_cover.jpg: rendered",
       "detail": ""
     },
     {
       "status": "pass",
-      "check": "wow-house-of-mirrors_cover.jpg: dimensions",
+      "check": "wow-omc2-star-birth_cover.jpg: dimensions",
       "detail": ""
     },
     {
       "status": "pass",
-      "check": "wow-house-of-mirrors_cover.jpg: not empty",
+      "check": "wow-omc2-star-birth_cover.jpg: not empty",
       "detail": ""
     },
     {
       "status": "pass",
-      "check": "wow-house-of-mirrors_cover.jpg: has visible content",
+      "check": "wow-omc2-star-birth_cover.jpg: has visible content",
       "detail": ""
     },
     {

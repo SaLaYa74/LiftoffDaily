@@ -28,7 +28,7 @@ JOBS = [
     Job("aurora_pm",   "reel_aurora",      EVERY_DAY, "13:00", live=True, note="Reel: northern lights alert (NOAA G2+ watch)"),
     Job("aurora_eve",  "reel_aurora",      EVERY_DAY, "16:30", live=True, note="Reel: northern lights alert (NOAA G2+ watch)"),
     # Weekly
-    Job("wow_tue",     "reel_wow",         (TUE,), "12:00", live=True, note="Reel: telescope image + 3 facts (hand-checked queue in liftoff/wow.py)"),
+    # Nov 14: Wow drops to once a week (78 reach, ~3 s watch vs Look Up's 145 reach and shares); Saturday kept.
     Job("wow_sat",     "reel_wow",         (SAT,), "10:00", live=True, note="Reel: telescope image + 3 facts (hand-checked queue in liftoff/wow.py)"),
     Job("launch_week", "reel_launch_week", (MON,), "07:00", live=True, note="Reel: rockets launching this week (LL2 + RocketLaunch.live)"),
 ]

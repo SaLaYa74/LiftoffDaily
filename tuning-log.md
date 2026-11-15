@@ -62,3 +62,14 @@ far, 1 save. Aurora correctly skipped all week (no G2+ watch). No errors.
 
 **Watch Mon Nov 16 (first baseline review):** Leonids 1-week Reel (today 11am) and tonight's Reel on Nov 16. Do the new
 Wow hooks hold past 3 s? Shares per reach: Look Up 1.8% vs Wow 0%. Decide on Scale vs Just In (wider-science preview).
+
+## 2026-11-14 (Sat, Claude with the owner): more Look Up, less Wow
+
+**Numbers (14 days):** Look Up 145 avg reach, 4 shares, 4.8 s watch (the winner); Wow 78 reach, 3.3 s; launch week 43.
+8 followers.
+
+**Changed:** Wow once a week (Saturday; Tuesday dropped). Look Up now handles full moons (kind="moon"): the Dec 23
+supermoon is queued (1 week out on Dec 16, and the night itself). Every claim is computed and checked at build time:
+full at 8:28 PM ET Dec 23 (USNO), 221,667 miles away (JPL Horizons), the closest full moon of 2026 (Horizons distance at
+all 13 of 2026's full moons), rises around sunset (USNO: 4:33 PM rise, 5:02 PM sunset, central US), still 99% lit on
+Christmas Eve (USNO). Photo: NASA/Bill Ingalls, Dec 2017 supermoon over Washington. Test builds: 22 checks, 0 blocking.

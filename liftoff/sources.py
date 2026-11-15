@@ -106,8 +106,9 @@ def moon_day(day, lat=39.0, lon=-95.0, tz_name="America/Chicago"):
     d = _fetch(f"https://aa.usno.navy.mil/api/rstt/oneday?date={day:%Y-%m-%d}&coords={lat},{lon}&tz={off:g}",
                ttl_min=24 * 60)["properties"]["data"]
     times = {m["phen"]: datetime.strptime(m["time"][:5], "%H:%M").time() for m in d.get("moondata", [])}
+    sun = {m["phen"]: datetime.strptime(m["time"][:5], "%H:%M").time() for m in d.get("sundata", [])}
     return {"phase": d.get("curphase", ""), "lit": int(str(d.get("fracillum", "0")).rstrip("%") or 0),
-            "rise": times.get("Rise"), "set": times.get("Set")}
+            "rise": times.get("Rise"), "set": times.get("Set"), "sunset": sun.get("Set")}
 
 
 def moon_distance_km(when):

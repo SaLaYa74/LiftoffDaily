@@ -52,6 +52,16 @@ EVENTS = [
              photo_focus=((0.5, 0.5), (0.48, 0.42)), photo_zoom=(1.0, 1.12),
              sources=("IMO 2027 Meteor Shower Calendar: maximum Jan 4 03:25 UT (evening of Jan 3 in the US), ZHR 80",
                       "American Meteor Society: peak night Jan 3-4, peak near 3:30 UT Jan 4, ~25 an hour under dark skies")),
+    # Nov 14: the closest full moon of 2026. Distance and "closest of the year" are computed and checked at build time
+    # (JPL Horizons at every 2026 full moon from USNO), never typed in here.
+    SkyEvent("supermoon-2026-12", "December supermoon", "moon", date(2026, 12, 23),
+             "the closest full moon of 2026",
+             best="as it rises in the east around sunset", where="east, right after sunset",
+             fact="A full moon looks biggest near the horizon, but that's an illusion: it's the same size up high",
+             photo="NHQ201712030002", photo_note="the Dec. 3, 2017 supermoon rising over Washington, D.C.",
+             photo_focus=((0.5, 0.42), (0.5, 0.4)), photo_zoom=(1.0, 1.15),
+             sources=("US Naval Observatory: full moon Dec 24, 2026, 01:28 UT (Dec 23, 8:28pm ET)",
+                      "NASA JPL Horizons: Earth-Moon distance at each 2026 full moon")),
 ]
 
 

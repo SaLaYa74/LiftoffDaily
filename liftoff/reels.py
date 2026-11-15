@@ -108,6 +108,8 @@ def reel_lookup(out_dir, posted=None, today=None):
     if not due:
         raise NoContent("no sky-event countdown due today")
     ev, (days, label) = due[0]
+    if ev.kind == "moon":
+        return _lookup_moon(out_dir, ev, days, label, today)
     rep = C.Report(f"lookup {ev.key} {label}")
     rep.require(len(ev.sources) >= 2, "event: two independent sources", f"{ev.key} lists {len(ev.sources)}")
     rep.require(days - STAGE_GRACE[days] <= (ev.night - today).days <= days,
@@ -147,6 +149,82 @@ def reel_lookup(out_dir, posted=None, today=None):
         f"Photo: {ev.photo_note} ({photo['credit']}).",
         f"#{ev.name.lower()} #meteorshower #stargazing #space #astronomy",
     ])
+    return _post(key, mp4, cover, caption, rep)
+
+
+# ---------------------------------------------------------------- Look Up: moon events (Nov 14)
+
+KM_TO_MI = 0.621371
+
+
+def _mins(t):
+    return t.hour * 60 + t.minute
+
+
+def _lookup_moon(out_dir, ev, days, label, today):
+    """Full-moon countdown. Every claim is computed and checked here: the full moment (USNO), the distance (JPL
+    Horizons), 'closest full moon of the year' (Horizons at every full moon that year), 'rises around sunset' and
+    'still full the next night' (USNO's one-day almanac for the middle of the US)."""
+    ET = ZoneInfo("America/New_York")
+    rep = C.Report(f"lookup {ev.key} {label}")
+    rep.require(len(ev.sources) >= 2, "event: two independent sources", f"{ev.key} lists {len(ev.sources)}")
+    rep.require(days - STAGE_GRACE[days] <= (ev.night - today).days <= days,
+                "event: countdown wording matches the date", f"{label} vs {(ev.night - today).days} days")
+    full = [t for t, p in S.moon_phases(ev.night - timedelta(days=20), 4)
+            if p == "Full Moon" and t.astimezone(ET).date() == ev.night]
+    if not rep.require(len(full) == 1, "moon: USNO full moon on the event night (ET)", f"found {full}"):
+        raise DataError(f"no USNO full moon on {ev.night}")
+    t_full = full[0]
+    dist = S.moon_distance_km(t_full)
+    rep.require(350_000 < dist < 410_000, "moon: distance plausible", f"{dist:,.0f} km")
+    year_full = [t for t, p in S.moon_phases(date(t_full.year, 1, 1), 56) if p == "Full Moon" and t.year == t_full.year]
+    rep.require(len(year_full) in (12, 13), "moon: every full moon of the year from USNO", f"{len(year_full)} found")
+    dists = {t: S.moon_distance_km(t) for t in year_full}
+    closest = min(dists, key=dists.get) == t_full
+    night, after = S.moon_day(ev.night), S.moon_day(ev.night + timedelta(days=1))
+    rises_at_sunset = bool(night["rise"] and night["sunset"] and abs(_mins(night["rise"]) - _mins(night["sunset"])) <= 75)
+    xmas = (ev.night.month, ev.night.day) == (12, 23) and after["lit"] >= 97
+    photo = S.nasa_image(ev.photo)
+    C.credit(rep, photo["credit"])
+
+    what = f"the closest full moon of {t_full.year}" if closest else "the full moon"
+    if days == 0:
+        big, small = f"*Tonight*: {what}", "Look east at sunset" if rises_at_sunset else "Look up tonight"
+    else:
+        when = "1 week" if (ev.night - today).days == 7 else f"{(ev.night - today).days} days"
+        big, small = f"*{when.capitalize()}* until {what}", f"Night of {ev.night:%b} {ev.night.day}"
+    miles, closer = dist * KM_TO_MI, (S.LD_KM - dist) * KM_TO_MI
+    t_et = t_full.astimezone(ET)
+    lay = "low"
+    beats = [Beat(K.hook(big, small, chip="LOOK UP", layout=lay), 2.3),
+             Beat(K.line(f"*{miles:,.0f}* miles away", sub=f"{closer:,.0f} miles closer than the Moon's average distance",
+                         chip="HOW CLOSE", layout=lay), 2.3),
+             Beat(K.line(f"Full at {t_et:%-I:%M %p} ET", sub=f"{t_et:%A, %b} {t_et.day}"
+                         + (". It rises in the east around sunset" if rises_at_sunset else ""), chip="WHEN", layout=lay), 2.2)]
+    if xmas:
+        beats.append(Beat(K.line("Still full on *Christmas Eve*", sub=f"{after['lit']}% lit the next night", chip="BONUS",
+                                 layout=lay), 2.0))
+    beats += [Beat(K.line(ev.fact, chip="WAIT, WHAT?", layout=lay), 2.3),
+              Beat(K.send("Send this to who you're *watching with*", "Follow for the night-of reminder 🔭", layout=lay), 1.9)]
+    key = f"lookup-{ev.key}-{days}"
+    mp4, cover = photo_reel(out_dir, key, photo["path"], f"Photo: {photo['credit']}", beats, seed=key,
+                            focus=ev.photo_focus, zoom=ev.photo_zoom, layout=lay)
+    caption = "\n".join([
+        f"{big.replace('*', '')} 🌕",
+        "",
+        f"The Moon is full at {t_et:%-I:%M %p} ET on {t_et:%A, %B} {t_et.day}, {miles:,.0f} miles from Earth"
+        + (f", the closest full moon of {t_full.year}." if closest else "."),
+        "Look east around sunset to catch it rising." if rises_at_sunset else "",
+        f"Bonus: it's still {after['lit']}% lit on Christmas Eve." if xmas else "",
+        f"Wait, what? {ev.fact}.",
+        "",
+        "📤 Send this to who you're watching with. 🔔 Follow for the night-of reminder.",
+        "",
+        f"Source: {'; '.join(ev.sources)}. Rise and sunset times for the central US.",
+        f"Photo: {ev.photo_note} ({photo['credit']}).",
+        "#supermoon #fullmoon #moon #stargazing #space",
+    ]).replace("\n\n\n", "\n\n")
+    caption = "\n".join(l for i, l in enumerate(caption.split("\n")) if l or i == 0 or caption.split("\n")[i - 1])
     return _post(key, mp4, cover, caption, rep)
 
 

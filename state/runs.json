@@ -303,5 +303,10 @@
     "at": "2026-11-15T11:00-08:00",
     "detail": "no sky-event countdown due today",
     "status": "skipped"
+  },
+  "2026-11-16:launch_week": {
+    "at": "2026-11-16T07:00-08:00",
+    "detail": "https://www.instagram.com/reel/DfzobeEgvAF/",
+    "status": "posted"
   }
 }

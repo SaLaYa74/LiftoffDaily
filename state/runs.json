@@ -315,8 +315,8 @@
     "status": "posted"
   },
   "2026-11-16:lookup": {
-    "at": "2026-11-16T12:30-08:00",
-    "detail": "RuntimeError: Media never became publicly available (or wrong content type): https://cdn.jsdelivr.net/gh/SaLaYa74/LiftoffDaily@a2d25fedc22fb235aa17dd613300535fbb27eeb0/media/2026-11-16_lookup/lookup-leonids-2026-0.mp4",
-    "status": "error"
+    "at": "2026-11-16T12:45-08:00",
+    "detail": "https://www.instagram.com/reel/Df0QTp0gqRB/",
+    "status": "posted"
   }
 }

@@ -304,6 +304,11 @@
     "detail": "no sky-event countdown due today",
     "status": "skipped"
   },
+  "2026-11-16:aurora_am": {
+    "at": "2026-11-16T08:00-08:00",
+    "detail": "no G2+ storm watch for tonight (2026-11-16)",
+    "status": "skipped"
+  },
   "2026-11-16:launch_week": {
     "at": "2026-11-16T07:00-08:00",
     "detail": "https://www.instagram.com/reel/DfzobeEgvAF/",

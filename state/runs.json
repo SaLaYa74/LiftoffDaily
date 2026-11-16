@@ -315,8 +315,8 @@
     "status": "posted"
   },
   "2026-11-16:lookup": {
-    "at": "2026-11-16T11:45-08:00",
-    "detail": "RuntimeError: Media never became publicly available (or wrong content type): https://cdn.jsdelivr.net/gh/SaLaYa74/LiftoffDaily@035cdb58b03a0e141c7a04f1084232467d0be70a/media/2026-11-16_lookup/lookup-leonids-2026-0.mp4",
+    "at": "2026-11-16T12:00-08:00",
+    "detail": "RuntimeError: Media never became publicly available (or wrong content type): https://cdn.jsdelivr.net/gh/SaLaYa74/LiftoffDaily@e8ae06918b7be19876845119470641d10311fca7/media/2026-11-16_lookup/lookup-leonids-2026-0.mp4",
     "status": "error"
   }
 }

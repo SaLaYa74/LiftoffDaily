@@ -73,3 +73,27 @@ supermoon is queued (1 week out on Dec 16, and the night itself). Every claim is
 full at 8:28 PM ET Dec 23 (USNO), 221,667 miles away (JPL Horizons), the closest full moon of 2026 (Horizons distance at
 all 13 of 2026's full moons), rises around sunset (USNO: 4:33 PM rise, 5:02 PM sunset, central US), still 99% lit on
 Christmas Eve (USNO). Photo: NASA/Bill Ingalls, Dec 2017 supermoon over Washington. Test builds: 22 checks, 0 blocking.
+
+## 2026-11-16 (Mon, Jarvis full review: first baseline)
+
+**Numbers (30 days, 9 Reels):** 8 followers. Look Up 150 avg reach, 4.5 shares avg, 4.8 s watch (Geminids 6-weeks: 183 reach,
+9 shares). Wow 83 reach, 0 shares, 3.3 s. Launch Week 78 reach, 2.5 s. Look Up is still the winner, but n=2.
+
+**Bug fixed (autopost.py): two Wow Reels posted Sat Nov 14.** The 10:30 run posted House of Mirrors. A queued run
+(10:33) had checked out the repo as it was when it was triggered, so it didn't see that post: it rebuilt the same Reel
+(Instagram rejected it, luckily) and wrote "error" over the "posted" record. The 10:45 run saw "error", retried, and
+posted the next Wow (OMC-2). Fix, in all three pages' runners: (1) every CI run pulls the latest state first;
+(2) right before publishing, re-check posted.json and today's run record, and stop as "duplicate" if it's already out;
+(3) the run log is merged, never overwritten, and a "posted" record can't be downgraded. No check loosened.
+
+**Wow queue refilled (1 left → 4):** Red Spider Nebula (potm2510a), M77 "core outshines the galaxy" (potm2604a),
+MACS J0553 "two galaxy clusters crashed" (potm2606a), after Arp 263. Every fact copied from the ESA/Webb release text
+(e.g. legs "each extend about 3 light-years"; black hole "eight million times as massive as our Sun"; "seen as it
+was 4.4 billion years in the past"; arc = "three images of a single background galaxy"). Skipped potm2603a: it's two
+discs side by side and a vertical crop would show one. All 4 built, 0 blocking, covers checked.
+**Today's Leonids "tonight" Look Up (11am):** test-built, 0 blocking (Moon 43% lit, sets ~11pm, from USNO).
+
+**Not changed:** Scale / Just In not built this week (the duplicate bug and empty queue came first; 9 posts is too
+thin). Sky queue runs to Jan 3 (Geminids arc, Dec 23 supermoon, Quadrantids).
+
+**Watch Thu Nov 19:** Leonids tonight Reel shares; no duplicate posts. Next Monday: build Scale (one new format).

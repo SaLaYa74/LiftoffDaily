@@ -109,4 +109,47 @@ QUEUE = [
          "own galaxy, right in front."),
         "ESA/Webb Picture of the Month potm2608a (Aug 27, 2026)",
         "#jameswebb #webbtelescope #space #galaxies #astronomy"),
+    # Added 2026-11-16 (Jarvis). Every fact from the ESA/Webb release text on each page.
+    Wow("red-spider", ("esa", "https://esawebb.org/images/potm2510a/", "The Red Spider Nebula, caught by Webb"),
+        "This *spider* was made by a dying star", "The Red Spider Nebula, seen by Webb",
+        (("Its legs are *giant gas bubbles*", "Each one stretches about 3 light-years", "WHAT YOU'RE SEEING"),
+         ("A *jet* carved that purple S", "Fast gas from near the central star, hitting older debris", "LOOK CLOSER"),
+         ("Stars like *our Sun* end like this", "Shedding their outer layers into space", "WAIT, WHAT?")),
+        "Send this to someone who *hates spiders*",
+        ("This is NGC 6537, the Red Spider Nebula: a planetary nebula, the glowing layers an ordinary star like the "
+         "Sun casts off at the end of its life, lit up by ultraviolet light from the hot core left behind.",
+         "Webb showed for the first time the full extent of the spider's legs: two closed, bubble-like lobes of "
+         "hydrogen gas (blue), each extending about 3 light-years, inflated by outflowing gas over thousands of years.",
+         "The purple S traces iron atoms where a fast jet from near the central star slammed into material the star "
+         "threw off earlier. This stage of a star's life lasts only a few tens of thousands of years."),
+        "ESA/Webb Picture of the Month potm2510a (Oct 28, 2025)",
+        "#jameswebb #webbtelescope #space #nebula #astronomy"),
+    Wow("m77-beacon", ("esa", "https://esawebb.org/images/potm2604a/", "A beacon of light in swirls of dust"),
+        "This galaxy's core *outshines* the rest of it", "Powered by a black hole 8 million times the Sun",
+        (("*45 million* light-years away", "Messier 77, a barred spiral galaxy in Cetus", "WHERE"),
+         ("The core is a *black hole* feeding", "Gas pulled in crashes together and heats up", "LOOK CLOSER"),
+         ("Those orange spikes *aren't real*", "Webb's mirror and struts bend the bright light", "WAIT, WHAT?")),
+        "Send this to someone who'd *zoom in*",
+        ("This is Messier 77, a barred spiral galaxy 45 million light-years away in the constellation Cetus.",
+         "Its bright core is an active galactic nucleus: a compact region of hot gas that outshines the rest of the "
+         "galaxy put together, powered by a supermassive black hole about eight million times the mass of the Sun.",
+         "The orange lines radiating from the centre aren't part of the galaxy. They're diffraction spikes, made when "
+         "very bright, concentrated light bends at the edges of Webb's hexagonal mirror panels and a mirror strut."),
+        "ESA/Webb Picture of the Month potm2604a (May 7, 2026)",
+        "#jameswebb #webbtelescope #space #galaxies #astronomy"),
+    Wow("macs0553-construction", ("esa", "https://esawebb.org/images/potm2606a/", "A cosmic construction project"),
+        "Two galaxy clusters *crashed*", "Right through each other. Webb caught them merging",
+        (("Seen as it was *4.4 billion years* ago", "Galaxy cluster MACS J0553.4-3342, in Columba", "WHEN"),
+         ("Now *1 million+ light-years* apart", "They'll keep swinging back until they merge", "WHAT YOU'RE SEEING"),
+         ("That orange arc is *one galaxy, 3 times*", "Its light bent by the cluster's gravity", "WAIT, WHAT?")),
+        "Send this to someone who loves *mind-benders*",
+        ("This is MACS J0553.4-3342, a galaxy cluster in the constellation Columba, seen as it was 4.4 billion years "
+         "ago. It's two sub-clusters of roughly equal mass that are actively merging.",
+         "They have already slammed through each other and travelled over one million light-years apart; they will "
+         "come back together again and again until they finally merge. Each is anchored on a huge, bright elliptical "
+         "galaxy, the two brightest points in the centre.",
+         "The cluster's mass bends light from galaxies behind it. The arc on the left, three bright spots joined "
+         "together, is three images of one single background galaxy."),
+        "ESA/Webb Picture of the Month potm2606a (Jul 3, 2026)",
+        "#jameswebb #webbtelescope #space #galaxies #astronomy"),
 ]

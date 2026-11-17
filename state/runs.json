@@ -328,5 +328,10 @@
     "at": "2026-11-16T12:45-08:00",
     "detail": "https://www.instagram.com/reel/Df0QTp0gqRB/",
     "status": "posted"
+  },
+  "2026-11-17:aurora_am": {
+    "at": "2026-11-17T08:00-08:00",
+    "detail": "no G2+ storm watch for tonight (2026-11-17)",
+    "status": "skipped"
   }
 }

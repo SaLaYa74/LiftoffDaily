@@ -97,3 +97,10 @@ discs side by side and a vertical crop would show one. All 4 built, 0 blocking, 
 thin). Sky queue runs to Jan 3 (Geminids arc, Dec 23 supermoon, Quadrantids).
 
 **Watch Thu Nov 19:** Leonids tonight Reel shares; no duplicate posts. Next Monday: build Scale (one new format).
+
+## 2026-11-20 — Launch-day posts replace the weekly roundup (owner request)
+- Weekly launch roundup averaged ~100 views; Starship Flight 15 (Nov 13) went by without its own post.
+- New: one Reel per big launch (Starship, Artemis, crewed, New Glenn, Falcon Heavy, NASA science), morning of or the
+  afternoon before an overnight launch. Firm time required; RocketLaunch.live must list it within 2 h of LL2.
+- No SpaceX footage/photos (copyrighted). Our own night-sky art; NASA's photo for Artemis only.
+- Launch outcome ("it landed!") posts need a second source for the result: Jarvis hand-verifies those (radar).

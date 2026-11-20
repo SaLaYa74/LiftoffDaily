@@ -331,6 +331,134 @@ def reel_launch_week(out_dir, posted=None, now=None):
     return _post(key, mp4, cover, caption, rep)
 
 
+# ---------------------------------------------------------------- Launch day (owner, Nov 20: "swap the weekly launch
+# roundup for posts on the day of big moments. Like that Starship... let's hit on those current events").
+# The weekly roundup averaged ~100 views; Starship Flight 15 (Nov 13) went by without a post of its own.
+# One Reel per big launch, the morning of (or the afternoon before an overnight / early launch). Big = Starship,
+# Artemis, crewed flights, New Glenn, Falcon Heavy, NASA planetary / astrophysics missions. The time must be firm
+# (to the minute) and RocketLaunch.live must list the same launch within 2 hours of Launch Library 2's time.
+# No SpaceX footage or photos (copyrighted): our own night-sky background, NASA's photo for Artemis only.
+BIG_LAUNCH = 75
+
+
+def _day_score(l):
+    s = launch_score(l)
+    if l["mission_type"] in ("Planetary Science", "Astrophysics", "Heliophysics"):
+        s = max(s, 80)
+    return s
+
+
+def _sky_bg(path, seed):
+    """Our own art: deep-blue night sky, stars, a warm glow on the horizon. No rights questions."""
+    import random
+    from PIL import Image, ImageDraw, ImageFilter
+    W_, H_ = 1600, 2600
+    im = Image.new("RGB", (W_, H_))
+    d = ImageDraw.Draw(im)
+    for y in range(H_):
+        t = y / H_
+        d.line([(0, y), (W_, y)], fill=(int(6 + 30 * t ** 3), int(10 + 18 * t ** 2), int(30 + 40 * t)))
+    rnd = random.Random(seed)
+    for _ in range(900):
+        x, y, r = rnd.uniform(0, W_), rnd.uniform(0, H_ * 0.8), rnd.choice((1, 1, 1, 2, 2, 3))
+        b = rnd.randint(150, 255)
+        d.ellipse([x - r, y - r, x + r, y + r], fill=(b, b, min(255, b + 20)))
+    glow = Image.new("RGB", (W_, H_), (0, 0, 0))
+    ImageDraw.Draw(glow).ellipse([W_ * -0.2, H_ * 0.82, W_ * 1.2, H_ * 1.25], fill=(255, 120, 40))
+    im = Image.blend(im, Image.composite(glow, im, glow.convert("L").filter(ImageFilter.GaussianBlur(160))), 0.55)
+    im.save(path, quality=95)
+    return path
+
+
+def _headline(l):
+    """(headline, subline): what people call it. 'Starship Flight 16', 'Crew-13', 'Shenzhou 24', else the rocket."""
+    import re
+    text = f"{l['name']} {l['mission']}"
+    m = re.search(r"Starship Flight \d+", text)
+    if m:
+        return m.group(0), _rocket(l)
+    mission = re.sub(r"\s*\(.*?\)", "", _mission(l)).strip()
+    if mission and any(k.lower() in mission.lower() for k, _ in NOTABLE) and len(mission) <= 22:
+        return mission, _rocket(l)
+    return _rocket(l), _mission(l) or l["provider"]
+
+
+def _desc(l, limit=150):
+    """The first sentence of LL2's mission description, if it's short enough to read in two seconds."""
+    first = (l["description"] or "").split(". ")[0].strip().rstrip(".")
+    return first + "." if 20 <= len(first) <= limit else ""
+
+
+def reel_launch_day(out_dir, posted=None, now=None):
+    posted = posted or {}
+    now = now or datetime.now(timezone.utc)
+    rep = C.Report("launch day")
+    every = S.launches(limit=30)
+    big = [l for l in every if l["net"] and now + timedelta(minutes=45) <= l["net"] <= now + timedelta(hours=21)
+           and l["status"] in ("Go", "TBC") and l["precision"] in ("Second", "Minute") and _day_score(l) >= BIG_LAUNCH
+           and f"launchday-{l['id']}" not in posted]
+    if not big:
+        raise NoContent("No big launch in the next 21 hours.")
+    l = max(big, key=lambda x: (_day_score(x), -x["net"].timestamp()))
+    key = f"launchday-{l['id']}"
+    rll = S.launches_rll()
+    match = S.rll_match(l, rll)
+    if not match:
+        horizon = max((r["t0"] for r in rll if r["t0"]), default=now)
+        if l["net"] > horizon:
+            raise DataError(f"{_rocket(l)} is beyond RocketLaunch.live's next-5 list; retrying later")
+    rep.require(match is not None, f"launch: {_rocket(l)} confirmed by RocketLaunch.live",
+                "RocketLaunch.live doesn't list it within 2 hours of LL2's time")
+    if match:
+        rep.expect(abs((match["t0"] - l["net"]).total_seconds()) <= 600, "launch: both sources agree to 10 minutes",
+                   f"LL2 {l['net']:%H:%M} vs RLL {match['t0']:%H:%M} UTC")
+    if not rep.ok:
+        raise DataError("Launch not confirmed by the second source.")
+    et, pt = l["net"].astimezone(ET), l["net"].astimezone(PT)
+    today_et = now.astimezone(ET).date()
+    when = "today" if et.date() == today_et else ("tomorrow" if et.date() == today_et + timedelta(days=1) else f"{et:%A}")
+    if when == "today" and et.hour >= 18:
+        when = "tonight"
+    rocket, mission = _rocket(l), _mission(l)
+    head, sub = _headline(l)
+    clock = lambda t, z: f"{t:%-I:%M %p} {z}".replace(":00 ", " ")
+    desc = _desc(l)
+    lay = "low"
+    beats = [
+        Beat(K.hook(f"*{head}* launches {when}", sub, chip="LAUNCH DAY", layout=lay), 2.4),
+        Beat(K.line(f"Liftoff *{clock(pt, 'PT')}*", sub=f"{clock(et, 'ET')} · {l['location'].split(',')[0]}",
+                    chip="SET A REMINDER", layout=lay), 2.3),
+    ]
+    if desc:
+        beats.append(Beat(K.line("What's *riding on it*", sub=desc, layout=lay), 3.0))
+    beats.append(Beat(K.send("Send this to your *launch buddy*", "Follow for launch-day alerts 🚀", layout=lay), 1.9))
+    if "artemis" in f"{l['name']} {l['mission']}".lower():
+        photo = S.nasa_image(LAUNCH_PHOTO)
+        C.credit(rep, photo["credit"])
+        bg, credit, note = photo["path"], f"Photo: {photo['credit']}", f"\nPhoto: {LAUNCH_PHOTO_NOTE} ({photo['credit']})."
+    else:
+        import os
+        os.makedirs(out_dir, exist_ok=True)
+        bg, credit, note = _sky_bg(os.path.join(out_dir, "sky.jpg"), key), "", "\nGraphic: Liftoff Daily (our own night-sky art)."
+    mp4, cover = photo_reel(out_dir, key, bg, credit, beats, seed=key, focus=((0.5, 0.45), (0.5, 0.4)), zoom=(1.0, 1.12),
+                            layout=lay)
+    tag = {"SpaceX": "#spacex", "Blue Origin": "#blueorigin", "NASA": "#nasa"}.get(l["provider"], "#launchday")
+    caption = "\n".join([
+        f"🚀 {head} launches {when}" + (f" on {rocket}." if head != rocket else (f": {mission}." if mission else ".")),
+        "",
+        f"Liftoff: {clock(pt, 'PT')} / {clock(et, 'ET')} ({et:%A, %b} {et.day}) from {l['location']}.",
+        *(["", desc] if desc else []),
+        "",
+        "Launch times slip all the time: check the live stream before you tune in.",
+        f"Watching? Drop a 🚀 and tell us where you're watching from 👇",
+        "📤 Send this to your launch buddy. 🔔 Follow for launch-day alerts.",
+        "",
+        f"Source: The Space Devs Launch Library 2, cross-checked with RocketLaunch.live.{note}",
+        f"#rocketlaunch {tag} #space #rocket",
+    ])
+    return _post(key, mp4, cover, caption, rep)
+
+
 # ---------------------------------------------------------------- Aurora alert (NOAA storm watch, G2 or stronger)
 
 AURORA_PHOTO = "iss047e000320"
@@ -432,3 +560,4 @@ def reel_wow(out_dir, posted=None):
 
 
 BUILDERS["reel_wow"] = reel_wow
+BUILDERS["reel_launch_day"] = reel_launch_day

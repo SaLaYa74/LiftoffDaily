@@ -30,5 +30,9 @@ JOBS = [
     # Weekly
     # Nov 14: Wow drops to once a week (78 reach, ~3 s watch vs Look Up's 145 reach and shares); Saturday kept.
     Job("wow_sat",     "reel_wow",         (SAT,), "10:00", live=True, note="Reel: telescope image + 3 facts (hand-checked queue in liftoff/wow.py)"),
-    Job("launch_week", "reel_launch_week", (MON,), "07:00", live=True, note="Reel: rockets launching this week (LL2 + RocketLaunch.live)"),
+    # Nov 20 (owner): the weekly launch roundup (~100 views) is retired for posts on the day of big launches
+    # (Starship, Artemis, crewed, New Glenn, Falcon Heavy, NASA science). Morning check for today; afternoon check
+    # catches overnight and early-morning launches. Idles on days with nothing big.
+    Job("launch_day_am", "reel_launch_day", EVERY_DAY, "07:00", live=True, note="Reel: big launch today (LL2 + RocketLaunch.live)"),
+    Job("launch_day_pm", "reel_launch_day", EVERY_DAY, "16:00", live=True, note="Reel: big launch tonight / early tomorrow"),
 ]

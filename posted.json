@@ -49,6 +49,16 @@
     "scheduled": "11:00",
     "trial": false
   },
+  "wow-arp263-missing-partner": {
+    "images": 1,
+    "job": "wow_sat",
+    "media": "reel",
+    "media_id": "18085885673338626",
+    "permalink": "https://www.instagram.com/reel/DgA06zqjMUi/",
+    "posted_at": "2026-11-21T18:02:17+00:00",
+    "scheduled": "10:00",
+    "trial": false
+  },
   "wow-cosmic-cliffs": {
     "images": 1,
     "job": "wow_tue",

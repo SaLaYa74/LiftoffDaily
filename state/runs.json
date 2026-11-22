@@ -453,5 +453,10 @@
     "at": "2026-11-21T10:00-08:00",
     "detail": "https://www.instagram.com/reel/DgA06zqjMUi/",
     "status": "posted"
+  },
+  "2026-11-22:launch_day_am": {
+    "at": "2026-11-22T07:00-08:00",
+    "detail": "No big launch in the next 21 hours.",
+    "status": "skipped"
   }
 }

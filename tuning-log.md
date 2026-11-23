@@ -104,3 +104,32 @@ thin). Sky queue runs to Jan 3 (Geminids arc, Dec 23 supermoon, Quadrantids).
   afternoon before an overnight launch. Firm time required; RocketLaunch.live must list it within 2 h of LL2.
 - No SpaceX footage/photos (copyrighted). Our own night-sky art; NASA's photo for Artemis only.
 - Launch outcome ("it landed!") posts need a second source for the result: Jarvis hand-verifies those (radar).
+
+## 2026-11-23 (Mon, Jarvis full review)
+
+**Numbers:** 9 followers. Only **2 Reels in 7 days** (Look Up Leonids tonight 120 reach / 2.7 s; Wow Arp 263 73 reach,
+1 share). 30 days: Look Up 154 avg reach, 4.3 shares; Wow 83 reach, 3.2 s; launch week 82. The page is starved: there's
+no sky countdown due until the Geminids 2-week stage on Nov 29.
+
+**New format: Scale (`reel_scale`, Tue 12:00 PT, from tomorrow).** It's the PLAYBOOK's "mind-blown scale" pillar and the
+planned next format. Same photo pipeline, credit check and caption checks as Wow, with a SCALE chip and its own
+hand-checked queue (liftoff/scale.py). Every number agrees between NASA Science's fact pages and NASA Goddard's
+planetary fact sheets; the checked values are written next to each entry.
+- Sun: 1.3 million Earths fill it (NASA; fact sheet volume ratio 1,304,000); ~865,000 miles wide (fact sheet radius
+  695,700 km = 864,600 mi, 109 Earths); 330,000+ times Earth's mass (fact sheet 332,900). Photo: SDO, Sept 10 2025
+  (PIA26681), zoomed to crop SDO's timestamp.
+- Pluto smaller than our Moon: 1,477 mi (NASA; fact sheet 2,376 km) vs the Moon's ~2,160 mi (NASA radius 1,080 mi;
+  fact sheet 3,475 km); "about half the width of the United States"; dwarf planet since 2006 (IAU). Photo: New
+  Horizons enhanced color (PIA19952); the caption says the colors are enhanced.
+Skipped Jupiter: NASA's page says "1,000 Earths could fit inside" while the fact sheet's volume ratio is 1,321, so the
+two sources don't agree in meaning. Will come back with the 11x-wider fact and a high-res NASA photo.
+Test builds: 19 checks each, 0 blocking; covers checked.
+
+**Wow queue +1 (3 → 4 unposted):** Markarian 178 (ESA/Hubble potw2549a): Wolf-Rayet stars "just before they collapse
+into black holes or neutron stars", 13 million light-years, blue compact dwarf. Every line is from the release text.
+Credit ESA/Hubble & NASA, F. Annibali, S. Hong. Test build 19 checks, 0 blocking.
+
+**Fixed (insights.py):** network timeouts are retried.
+
+**Watch Thu Nov 26:** first Scale Reel (Tue): shares per reach vs Look Up (4.3) and Wow (0.2). Shenzhou 24 launch_day_pm
+(Tue 4pm). Next Monday: Scale needs 2+ more entries (Jupiter 11x wider, Earth vs Moon, Olympus Mons) if it beats Wow.

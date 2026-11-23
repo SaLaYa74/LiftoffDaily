@@ -152,4 +152,20 @@ QUEUE = [
          "together, is three images of one single background galaxy."),
         "ESA/Webb Picture of the Month potm2606a (Jul 3, 2026)",
         "#jameswebb #webbtelescope #space #galaxies #astronomy"),
+    # Added 2026-11-23 (Jarvis). Every fact from the ESA/Hubble release text (potw2549a, Dec 8, 2025).
+    Wow("mrk178-wolf-rayet", ("esa", "https://esahubble.org/images/potw2549a/", "Massive stars make their mark"),
+        "These giant stars are *about to collapse*", "Into black holes or neutron stars. Hubble found them here",
+        (("*13 million* light-years away", "Markarian 178, a blue compact dwarf galaxy in Ursa Major", "WHERE"),
+         ("The blue is *young, hot stars*", "With very little dust hiding them", "LOOK CLOSER"),
+         ("The red patch is full of *Wolf-Rayet* stars", "Massive stars blowing off their own atmospheres", "WAIT, WHAT?")),
+        "Send this to someone who loves *a cosmic mystery*",
+        ("This is Markarian 178 (Mrk 178), a blue compact dwarf galaxy, much smaller than the Milky Way, 13 million "
+         "light-years away in Ursa Major.",
+         "Its blue comes from lots of young, hot stars with little dust around them. The reddish region near its edge "
+         "is home to many rare Wolf-Rayet stars: massive stars casting off their atmospheres in powerful winds, a phase "
+         "they enter just before they collapse into black holes or neutron stars.",
+         "Wolf-Rayet stars only last a few million years, so something recently set off a burst of star formation here. "
+         "Astronomers think it was an interaction with a smaller satellite galaxy."),
+        "ESA/Hubble Picture of the Week potw2549a (Dec 8, 2025)",
+        "#hubble #space #galaxies #astronomy #stars"),
 ]

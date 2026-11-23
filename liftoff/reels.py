@@ -528,19 +528,29 @@ BUILDERS.update({"reel_launch_week": reel_launch_week, "reel_aurora": reel_auror
 
 def reel_wow(out_dir, posted=None):
     from .wow import QUEUE
+    return _queue_reel(out_dir, posted, QUEUE, "wow", "WOW", "liftoff/wow.py")
+
+
+def reel_scale(out_dir, posted=None):
+    """Nov 23 (Jarvis): size comparisons on a NASA photo (PLAYBOOK "mind-blown scale"), same pipeline and checks as Wow."""
+    from .scale import QUEUE
+    return _queue_reel(out_dir, posted, QUEUE, "scale", "SCALE", "liftoff/scale.py")
+
+
+def _queue_reel(out_dir, posted, queue, prefix, chip, where):
     posted = posted or {}
-    todo = [w for w in QUEUE if f"wow-{w.key}" not in posted]
+    todo = [w for w in queue if f"{prefix}-{w.key}" not in posted]
     if not todo:
-        raise NoContent("wow queue is empty: add entries to liftoff/wow.py")
+        raise NoContent(f"{prefix} queue is empty: add entries to {where}")
     w = todo[0]
-    key = f"wow-{w.key}"
+    key = f"{prefix}-{w.key}"
     rep = C.Report(key)
-    rep.require(2 <= len(w.facts) <= 3, "wow: 2-3 fact beats", f"{len(w.facts)} beats")
-    rep.require(bool(w.source), "wow: facts cite the release", "no source")
+    rep.require(2 <= len(w.facts) <= 3, f"{prefix}: 2-3 fact beats", f"{len(w.facts)} beats")
+    rep.require(bool(w.source), f"{prefix}: facts cite the release", "no source")
     img = S.nasa_image(w.image[1]) if w.image[0] == "nasa" else S.esa_image(w.image[1], w.image[2])
     C.credit(rep, img["credit"])
     credit = w.credit_as or img["credit"]
-    beats = [Beat(K.hook(w.hook, w.hook_sub, chip="WOW", layout=w.layout), 2.4)]
+    beats = [Beat(K.hook(w.hook, w.hook_sub, chip=chip, layout=w.layout), 2.4)]
     beats += [Beat(K.line(a, sub=b, chip=c, layout=w.layout), 2.3) for a, b, c in w.facts]
     beats.append(Beat(K.send(w.send, "Follow for a new one every week 🔭", layout=w.layout), 1.9))
     mp4, cover = photo_reel(out_dir, key, img["path"], f"Image: {credit}", beats, seed=key,
@@ -560,4 +570,5 @@ def reel_wow(out_dir, posted=None):
 
 
 BUILDERS["reel_wow"] = reel_wow
+BUILDERS["reel_scale"] = reel_scale
 BUILDERS["reel_launch_day"] = reel_launch_day

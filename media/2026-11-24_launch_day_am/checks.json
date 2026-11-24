@@ -1,0 +1,100 @@
+{
+  "subject": "launch day",
+  "counts": {
+    "pass": 18,
+    "warn": 0,
+    "block": 0
+  },
+  "checks": [
+    {
+      "status": "pass",
+      "check": "launch: Long March 2F/G confirmed by RocketLaunch.live",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launch: both sources agree to 10 minutes",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchday-c9605b67-8a53-4239-a8ae-577fe3b79799.mp4: rendered",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchday-c9605b67-8a53-4239-a8ae-577fe3b79799.mp4: file size",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchday-c9605b67-8a53-4239-a8ae-577fe3b79799.mp4: duration",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchday-c9605b67-8a53-4239-a8ae-577fe3b79799.mp4: 1080x1920",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchday-c9605b67-8a53-4239-a8ae-577fe3b79799.mp4: has audio",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchday-c9605b67-8a53-4239-a8ae-577fe3b79799.mp4: H.264 video",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchday-c9605b67-8a53-4239-a8ae-577fe3b79799_cover.jpg: rendered",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchday-c9605b67-8a53-4239-a8ae-577fe3b79799_cover.jpg: dimensions",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchday-c9605b67-8a53-4239-a8ae-577fe3b79799_cover.jpg: not empty",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "launchday-c9605b67-8a53-4239-a8ae-577fe3b79799_cover.jpg: has visible content",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: length",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: 5 hashtags max",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: cites its source",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: credits the visual",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: brand language",
+      "detail": ""
+    },
+    {
+      "status": "pass",
+      "check": "caption: no missing values",
+      "detail": ""
+    }
+  ]
+}

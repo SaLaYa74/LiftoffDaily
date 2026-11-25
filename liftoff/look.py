@@ -98,3 +98,22 @@ def send(text, sub="", layout="high"):
     align = "center" if layout == "high" else "left"
     return _page(f'<div class="box" style="{_at("send", layout)};text-align:{align}"><div class="claim" style="font-size:112px">'
                  f'{mark(text)}</div>{sub_html}</div>')
+
+
+def map_beat(big, small, svg, legend, chip="", note=""):
+    """Find-your-state map (Nov 24): the claim up top, the US map in a dark panel, a legend under it.
+    legend: [(fill, label, detail)]. Sits above Instagram's caption area and left of the button column."""
+    chip_html = f'<div class="chip">{escape(chip)}</div>' if chip else ""
+    small_html = f'<div class="sub" style="font-size:44px;margin-top:18px">{mark(small)}</div>' if small else ""
+    size = 116 if len(big) <= 30 else 100
+    keys = "".join(
+        f'<div style="display:flex;align-items:center;gap:14px;flex:1;min-width:0"><i style="flex:none;width:34px;height:34px;'
+        f'border-radius:8px;background:{fill};border:2px solid rgba(255,255,255,.35)"></i><div style="line-height:1.05">'
+        f'<div style="font-weight:700;font-size:32px">{escape(label)}</div>'
+        f'<div style="font-size:22px;opacity:.75">{escape(detail)}</div></div></div>' for fill, label, detail in legend)
+    note_html = f'<div style="font-size:24px;opacity:.75;margin-top:14px">{escape(note)}</div>' if note else ""
+    # One flowing column, so a long headline pushes the map down instead of running into it.
+    return _page(f'<div style="position:absolute;top:215px;left:60px;right:56px;display:flex;flex-direction:column">'
+                 f'<div>{chip_html}<div class="claim" style="font-size:{size}px">{mark(big)}</div>{small_html}</div>'
+                 f'<div style="margin:34px 0 0 -36px;background:rgba(4,6,14,.62);border-radius:28px;padding:22px 18px 22px">'
+                 f'{svg}<div style="display:flex;gap:16px;margin-top:14px;padding:0 8px">{keys}</div>{note_html}</div></div>')

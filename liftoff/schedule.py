@@ -22,6 +22,9 @@ class Job:
 JOBS = [
     # Moments, not the calendar: each of these checks every day and idles unless something is due.
     # Sky-event countdowns (6 weeks / 2 weeks / 1 week / tomorrow / tonight). 11am PT = 2pm ET: early enough to plan the night.
+    # Nov 24 roundtable (owner: "Apply all"): on a big shower's peak night, a find-your-state cloud map at 9am PT
+    # (NWS + MET Norway must agree). It replaces that day's "tonight" countdown; idles every other day.
+    Job("skymap",      "reel_sky_map",     EVERY_DAY, "09:00", live=True, note="Reel: peak-night cloud map, every state (Geminids, Quadrantids)"),
     Job("lookup",      "reel_lookup",      EVERY_DAY, "11:00", live=True, note="Reel: sky-event countdown (meteor showers, supermoons)"),
     # Aurora: NOAA issues storm watches at any hour, so three chances a day; one post per night at most.
     Job("aurora_am",   "reel_aurora",      EVERY_DAY, "08:00", live=True, note="Reel: northern lights alert (NOAA G2+ watch)"),

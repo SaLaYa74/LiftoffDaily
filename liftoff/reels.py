@@ -104,7 +104,10 @@ def reel_lookup(out_dir, posted=None, today=None):
     posted = posted or {}
     today = today or datetime.now(PT).date()
     due = [(e, _due_stage(e, today, posted)) for e in SKY.upcoming(today)]
-    due = sorted([(e, s) for e, s in due if s], key=lambda es: es[1][0])        # most urgent first
+    # Nov 24: on peak night the find-your-state cloud map (reel_sky_map, 9am) replaces the "tonight" countdown;
+    # if the map couldn't post (forecast checks failed), the countdown still goes out at 11am.
+    due = sorted([(e, s) for e, s in due if s and not (s[0] == 0 and f"skymap-{e.key}" in posted)],
+                 key=lambda es: es[1][0])        # most urgent first
     if not due:
         raise NoContent("no sky-event countdown due today")
     ev, (days, label) = due[0]
@@ -150,6 +153,87 @@ def reel_lookup(out_dir, posted=None, today=None):
         f"#{ev.name.lower()} #meteorshower #stargazing #space #astronomy",
     ])
     return _post(key, mp4, cover, caption, rep)
+
+
+# ---------------------------------------------------------------- Find your state: peak-night cloud map (Nov 24)
+
+# Jarvis Nov 24 roundtable (owner: "Apply all"): Liftoff gets the find-yourself formula. Viewing window per shower,
+# local hours from `start` on the peak evening through `end` the next morning (liftoff/skymap.py has the method).
+MAP_WINDOW = {"geminids-2026": (22, 4), "quadrantids-2027": (2, 6)}
+
+
+def _hr(h):
+    return "midnight" if h == 0 else ("noon" if h == 12 else f"{h % 12}{'am' if h < 12 else 'pm'}")
+
+
+def reel_sky_map(out_dir, posted=None, today=None, now=None):
+    """Peak night of a big meteor shower: every state colored by tonight's cloud forecast (NWS + MET Norway must
+    agree to call a state clear or clouded out). Posts once per shower, the morning of the peak."""
+    import os
+    from . import skymap as M
+    posted = posted or {}
+    today = today or datetime.now(PT).date()
+    ev = next((e for e in SKY.EVENTS if e.kind == "meteors" and e.night == today and e.key in MAP_WINDOW), None)
+    if ev is None:
+        raise NoContent("no mapped meteor shower peaks tonight")
+    key = f"skymap-{ev.key}"
+    if key in posted:
+        raise NoContent(f"{key} already posted")
+    rep = C.Report(key)
+    rep.require(len(ev.sources) >= 2, "event: two independent sources", f"{ev.key} lists {len(ev.sources)}")
+    start, end = MAP_WINDOW[ev.key]
+    st = M.tonight(ev.night, (start, end), rep, now=now)
+    if not rep.ok:
+        raise DataError("Cloud forecasts failed checks: " + "; ".join(i["detail"] for i in rep.blocked)[:400])
+    lit, moon, moon_sub, moon_note = moon_on(ev.night, rep)
+    by = {v: sorted(st[f]["name"] for f in st if st[f]["verdict"] == v) for v in (M.CLEAR, M.TOSS, M.CLOUDY)}
+    n = len(by[M.CLEAR])
+    hrs = f"{_hr(start)}-{_hr(end)}"
+    svg = M.map_svg({f: M.COLORS[v["verdict"]] for f, v in st.items()}, {f: v["abbr"] for f, v in st.items()})
+    legend = [(M.COLORS[v][0], label, detail) for v, label, detail in M.LEGEND]
+    if n >= 2:
+        big, plain = f"*{n} states* get clear skies tonight", f"{n} states get clear skies tonight"
+    else:
+        big, plain = f"Will clouds ruin the *{ev.name}*?", f"Will clouds ruin the {ev.name}?"
+    small = (f"{ev.name} peak: up to {ev.rate} meteors an hour" if ev.rate >= 50 else f"The {ev.name} peak tonight")
+    lay = "low"
+    beats = [
+        Beat(K.map_beat(big, small, svg, legend, chip="FIND YOUR STATE",
+                        note=f"Cloud cover {hrs} local time · NWS + MET Norway forecasts"), 6.5),
+        Beat(K.line(ev.best[0].upper() + ev.best[1:], sub=f"Where: {ev.where}", chip="WHEN", layout=lay), 2.4),
+        Beat(K.line(moon, sub=moon_sub, chip="THE MOON", layout=lay), 2.0),
+        Beat(K.send("Comment your state + *what you saw*", "Follow for the next sky alert 🔭", layout=lay), 2.2),
+    ]
+    os.makedirs(out_dir, exist_ok=True)
+    bg = _sky_bg(os.path.join(out_dir, "sky.jpg"), key)
+    mp4, cover = photo_reel(out_dir, key, bg, "", beats, seed=key, focus=((0.5, 0.45), (0.5, 0.4)), zoom=(1.0, 1.08),
+                            layout=lay)
+    names = lambda xs: ", ".join(xs) if xs else "none"
+    rate_line = (f"Up to {ev.rate} meteors an hour in a perfectly dark sky (real-world counts are lower, but still a "
+                 f"show)." if ev.rate >= 50 else f"Expect around {ev.rate} an hour from a dark spot.")
+    caption = "\n".join([
+        f"🌠 {plain}. Find yours: the {ev.name} peak tonight ({_night_range(ev.night)}).",
+        "",
+        f"✨ Clear skies: {names(by[M.CLEAR])}",
+        f"🤞 Toss-up: {names(by[M.TOSS])}",
+        f"☁️ Clouded out: {names(by[M.CLOUDY])}",
+        "",
+        f"Best time: {ev.best}. Where to look: {ev.where}. {rate_line}",
+        f"Moon: {lit}% lit, {moon_note}.",
+        "",
+        "💬 Comment your state and how many you saw 👇",
+        "📤 Send this to who you're watching with. 🔔 Follow for the next sky alert.",
+        "",
+        f"How we made the map: average cloud cover from {hrs} local time tonight at each state's center of population "
+        "(2020 Census), from two independent forecasts, the National Weather Service (sky cover) and MET Norway "
+        f"(Locationforecast, CC BY 4.0). Clear = both say {M.CLEAR_MAX}% or less; clouded out = both say "
+        f"{M.CLOUDY_MIN}% or more. Your exact spot can differ, so check your local forecast before you head out.",
+        f"Source: {'; '.join(ev.sources)}. Clouds: NWS, MET Norway. Moon: US Naval Observatory.",
+        "Graphic: Liftoff Daily (our own map and night-sky art; state shapes from U.S. Census Bureau via us-atlas).",
+        f"#{ev.name.lower()} #meteorshower #stargazing #nightsky #astronomy",
+    ])
+    return _post(key, mp4, cover, caption, rep)
+
 
 
 # ---------------------------------------------------------------- Look Up: moon events (Nov 14)
@@ -494,9 +578,27 @@ def reel_aurora(out_dir, posted=None, now=None, min_g=2):
 
     noaa = info["aurora"].rstrip(".")
     lay = "low"
-    beats = [
-        Beat(K.hook("Northern lights alert: *tonight*", f"NOAA has a G{g} storm watch out", chip="LOOK UP", layout=lay), 2.3),
-        Beat(K.line("How far south?", sub=f"NOAA: {noaa}", chip="WHERE", layout=lay), 2.8),
+    # Nov 24 roundtable: find-your-state. When NOAA's sentence names lower-48 states, the hook is a map of exactly
+    # that line (liftoff/skymap.py aurora_reach); otherwise the plain alert below.
+    from . import skymap as M
+    reach = M.aurora_reach(noaa)
+    map_lines = []
+    if reach:
+        cen = M.centers()
+        svg = M.map_svg({f: M.AURORA[v] for f, v in reach.items()}, {f: cen[f]["abbr"] for f in reach})
+        legend = [(M.AURORA[v][0], label, detail) for v, label, detail in M.AURORA_LEGEND]
+        names = lambda v: ", ".join(sorted(cen[f]["name"] for f, x in reach.items() if x == v)) or "none"
+        rep.require(sum(v == "edge" for v in reach.values()) >= 1 and len(reach) == 51,
+                    "aurora map: NOAA's named states drawn, every state colored", f"{len(reach)} states")
+        beats = [Beat(K.map_beat("Northern lights *tonight*", f"Find your state · NOAA G{g} storm watch",
+                                 svg, legend, chip="LOOK UP", note=f"NOAA: {noaa}"), 6.0)]
+        map_lines = ["", f"🟢 Best chance: {names('in')}", f"🟡 NOAA's edge: {names('edge')}",
+                     "Map: our drawing of NOAA's line. The northern part of each state has the best shot.", ""]
+    else:
+        beats = [
+            Beat(K.hook("Northern lights alert: *tonight*", f"NOAA has a G{g} storm watch out", chip="LOOK UP", layout=lay), 2.3),
+            Beat(K.line("How far south?", sub=f"NOAA: {noaa}", chip="WHERE", layout=lay), 2.8)]
+    beats += [
         Beat(K.line("Look *north*, away from city lights", sub="Best roughly 10pm to 2am", chip="HOW", layout=lay), 2.2),
         Beat(K.line("Your phone sees more than *your eyes*", sub="Use night mode, hold still 3 seconds", chip="PRO TIP",
                     layout=lay), 2.2),
@@ -509,9 +611,11 @@ def reel_aurora(out_dir, posted=None, now=None, min_g=2):
         "",
         f"NOAA's Space Weather Prediction Center has a G{g} geomagnetic storm watch out (issued {w['issued']:%b} "
         f"{w['issued'].day}, {w['issued']:%H:%M} UTC). In NOAA's words: {noaa}.",
+        *map_lines,
         "Look north from somewhere dark, roughly 10pm-2am. Phone night mode picks up color your eyes can't.",
         "Forecasts can change fast; clouds and city lights are the real enemies.",
         "",
+        *(["💬 Comment your state if you see them 👇"] if reach else []),
         "📤 Send this to someone who's never seen them. 🔔 Follow for the next alert.",
         "",
         "Source: NOAA Space Weather Prediction Center (storm watch + Kp forecast).",
@@ -572,3 +676,4 @@ def _queue_reel(out_dir, posted, queue, prefix, chip, where):
 BUILDERS["reel_wow"] = reel_wow
 BUILDERS["reel_scale"] = reel_scale
 BUILDERS["reel_launch_day"] = reel_launch_day
+BUILDERS["reel_sky_map"] = reel_sky_map

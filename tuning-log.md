@@ -133,3 +133,18 @@ Credit ESA/Hubble & NASA, F. Annibali, S. Hong. Test build 19 checks, 0 blocking
 
 **Watch Thu Nov 26:** first Scale Reel (Tue): shares per reach vs Look Up (4.3) and Wow (0.2). Shenzhou 24 launch_day_pm
 (Tue 4pm). Next Monday: Scale needs 2+ more entries (Jupiter 11x wider, Earth vs Moon, Olympus Mons) if it beats Wow.
+
+## 2026-11-24: roundtable (owner: "Apply all")
+
+**Numbers (28 days):** 1,026 reach, 8 followers; 100-160 views a post. Liftoff hasn't used the formula that works on the
+other pages (everyone finds their own state on one screen, on the day it matters).
+
+**Added (56dc819):**
+- `skymap` (9am PT, idles except on peak nights: Geminids Sun Dec 13, Quadrantids Sun Jan 3): every state colored by
+  cloud cover over the viewing window at its 2020 Census center of population. NWS sky cover and MET Norway must BOTH
+  say ≤30% to call a state clear, both ≥70% for clouded out; anything else is a toss-up. Blocks unless all 51 states
+  load fresh forecasts and the two agree on 60%+ of states. If it posts, that day's 11am "tonight" countdown is skipped.
+- `reel_aurora` now opens on a map of NOAA's own "as low as ..." line when a G2+ watch names lower-48 states.
+
+**Deadline (owner agreed):** Thu Dec 17 review. Still flat after the Geminids map → big moments only (skymap, aurora,
+launch day, Look Up); Scale and Wow retired.

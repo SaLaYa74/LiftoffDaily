@@ -529,6 +529,11 @@
     "detail": "https://www.instagram.com/reel/DgIOocqCryC/",
     "status": "posted"
   },
+  "2026-11-24:launch_day_pm": {
+    "at": "2026-11-24T16:00-08:00",
+    "detail": "No big launch in the next 21 hours.",
+    "status": "skipped"
+  },
   "2026-11-24:lookup": {
     "at": "2026-11-24T11:00-08:00",
     "detail": "no sky-event countdown due today",

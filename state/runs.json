@@ -629,6 +629,11 @@
     "detail": "no G2+ storm watch for tonight (2026-11-27)",
     "status": "skipped"
   },
+  "2026-11-27:aurora_pm": {
+    "at": "2026-11-27T13:00-08:00",
+    "detail": "no G2+ storm watch for tonight (2026-11-27)",
+    "status": "skipped"
+  },
   "2026-11-27:launch_day_am": {
     "at": "2026-11-27T07:15-08:00",
     "detail": "No big launch in the next 21 hours.",

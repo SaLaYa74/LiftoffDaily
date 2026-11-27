@@ -623,5 +623,10 @@
     "at": "2026-11-26T09:00-08:00",
     "detail": "no mapped meteor shower peaks tonight",
     "status": "skipped"
+  },
+  "2026-11-27:launch_day_am": {
+    "at": "2026-11-27T07:00-08:00",
+    "detail": "Data source temporarily unavailable (The read operation timed out); will retry",
+    "status": "waiting"
   }
 }

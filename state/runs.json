@@ -633,5 +633,10 @@
     "at": "2026-11-27T07:15-08:00",
     "detail": "No big launch in the next 21 hours.",
     "status": "skipped"
+  },
+  "2026-11-27:skymap": {
+    "at": "2026-11-27T09:00-08:00",
+    "detail": "no mapped meteor shower peaks tonight",
+    "status": "skipped"
   }
 }
